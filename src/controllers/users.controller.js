@@ -18,7 +18,23 @@ const createUser = async (req, res) => {
     res.send('userCreate');
 }
 
+const editUser = async (req, res)=>{
+    const {nombres, apellidos, telefono, contrasena, correo, id} = req.body;
+    const response = await pool.query('UPDATE USERS  SET NOMBRES =$1 ,APELLIDOS=$2 ,TELEFONO=$3,CONTRASENA=$4,CORREO=$5 WHERE ID = $6',[nombres,apellidos,telefono,contrasena,correo,id]);
+    console.log(response);
+    res.send('editUser');
+}
+
+const deleteUser = async (req, res)=>{
+    const {id} = req.body;
+    const response = await pool.query('DELETE FROM USERS  WHERE ID = $1',[id]);
+    console.log(response);
+    res.send('deleteUser');
+}
+
 module.exports = {
     getUsers,
-    createUser
+    createUser,
+    editUser,
+    deleteUser
 }
