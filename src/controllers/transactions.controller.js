@@ -8,7 +8,7 @@ const pool = new Pool({
 })
 const getTransactions = async (req, res) => {
     const {idcuenta} = req.body;
-    const response = await pool.query('SELECT * FROM TRANSACTIONS WHERE IDCUENTA= $1'),[idcuenta];
+    const response = await pool.query('SELECT * FROM TRANSACTIONS WHERE IDCUENTA= $1',[idcuenta]);
     res.status(200).json(response.rows);
 };
 
