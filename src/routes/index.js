@@ -2,6 +2,7 @@ const { Router } = require('express');
 const router = Router();
 
 const { getUsers } = require('../controllers/users.controller');
+const { getUsersByCorreo } = require('../controllers/users.controller');
 const { createUser } = require('../controllers/users.controller');
 const { editUser } = require('../controllers/users.controller');
 const { deleteUser } = require('../controllers/users.controller');
@@ -17,6 +18,7 @@ const { editTransaction } = require('../controllers/transactions.controller');
 const { deleteTransaction } = require('../controllers/transactions.controller');
 
 router.get('/users', getUsers);
+router.get('/users/:correo', getUsersByCorreo);
 router.post('/addUser', createUser);
 router.post('/editUser', editUser);
 router.post('/deleteUser', deleteUser);

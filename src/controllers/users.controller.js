@@ -6,8 +6,14 @@ const pool = new Pool({
     database:'mywallet',
     port:'5432'
 })
-const getUsers = async (req, res) => {
+const getUsers = async (req, res) => {    
     const response = await pool.query('SELECT * FROM USERS');
+    res.status(200).json(response.rows);
+};
+
+const getUsersByCorreo = async (req, res) => {
+    const correo = req.params.correo;
+    const response = await pool.query('SELECT * FROM USERS WHERE CORREO = $1',[correo]);
     res.status(200).json(response.rows);
 };
 
@@ -34,6 +40,7 @@ const deleteUser = async (req, res)=>{
 
 module.exports = {
     getUsers,
+    getUsersByCorreo,
     createUser,
     editUser,
     deleteUser
