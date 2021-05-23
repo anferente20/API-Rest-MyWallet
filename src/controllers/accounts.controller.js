@@ -7,7 +7,7 @@ const pool = new Pool({
     port:'5432'
 })
 const getAccounts = async (req, res) => {
-    const {idcliente} = req.body;
+    const idcliente = req.params.idcliente;
     const response = await pool.query('SELECT * FROM ACCOUNTS WHERE IDCLIENTE = $1',[idcliente]);
     res.status(200).json(response.rows);
 };

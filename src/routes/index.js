@@ -21,12 +21,12 @@ router.post('/addUser', createUser);
 router.post('/editUser', editUser);
 router.post('/deleteUser', deleteUser);
 
-router.get('/accounts', getAccounts);
+router.get('/accounts/:idcliente', getAccounts);
 router.post('/addAccount', createAccount);
 router.post('/editAccount', editAccount);
 router.post('/deleteAccount', deleteAcount);
 
-router.get('/transactions', getTransactions);
+router.get('/transactions/:idcuenta', getTransactions);
 router.post('/addTransaction', createTransaction);
 router.post('/editTransaction', editTransaction);
 router.post('/deleteTransaction', deleteTransaction);
