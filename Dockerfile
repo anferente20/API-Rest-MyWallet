@@ -3,5 +3,6 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY .  .
-CMD ["node","src/index.js"]
-#CMD ["npm","start"]
+EXPOSE 3000
+#CMD ["node","src/index.js"]
+CMD ["npm","start"]
