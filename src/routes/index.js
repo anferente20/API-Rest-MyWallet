@@ -18,7 +18,7 @@ const { editTransaction } = require('../controllers/transactions.controller');
 const { deleteTransaction } = require('../controllers/transactions.controller');
 
 router.get('/users', getUsers);
-router.get('/users/:correo', getUsersByCorreo);
+router.get('/users/:correo/:contrasena', getUsersByCorreo);
 router.post('/addUser', createUser);
 router.post('/editUser', editUser);
 router.post('/deleteUser', deleteUser);

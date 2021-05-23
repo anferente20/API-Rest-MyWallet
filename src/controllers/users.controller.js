@@ -13,7 +13,8 @@ const getUsers = async (req, res) => {
 
 const getUsersByCorreo = async (req, res) => {
     const correo = req.params.correo;
-    const response = await pool.query('SELECT * FROM USERS WHERE CORREO = $1',[correo]);
+    const contrasena = req.params.contrasena;
+    const response = await pool.query('SELECT * FROM USERS WHERE CORREO = $1 AND CONTRASENA =$2',[correo,contrasena]);
     res.status(200).json(response.rows);
 };
 
