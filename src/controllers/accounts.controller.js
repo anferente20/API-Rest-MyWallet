@@ -17,7 +17,6 @@ const createAccount = async (req, res) => {
     const {nombre,descripcion,idcliente} = req.body;
     const response = await pool.query('INSERT INTO ACCOUNTS (NOMBRE,DESCRIPCION,IDCLIENTE) VALUES ($1,$2,$3)',[nombre,descripcion,idcliente]);
     console.log(response);
-    res.send('cuenta creada');
 }
 
 const editAccount = async (req, res)=>{
