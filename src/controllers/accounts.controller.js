@@ -8,14 +8,14 @@ const pool = new Pool({
 })
 const getAccounts = async (req, res) => {    
     const idcliente = req.params.idcliente;
-    const response = await pool.query('SELECT A.ID, A.NOMBRE, A.DESCRIPCION, A.IDCLIENTE, (SELECT SUM(MONTO) FROM TRANSACTIONS WHERE IDCUENTA = A.ID) AS SALDO FROM ACCOUNTS A WHERE A.IDCLIENTE = $1;;',[idcliente]);
+    const response = await pool.query('SELECT A.ID, A.NOMBRE, A.DESCRIPCION, A.IDCLIENTE, (SELECT SUM(MONTO) FROM TRANSACTIONS WHERE IDCUENTA = A.ID AND TIPO = TRUE) AS INGRESOS,(SELECT SUM(MONTO) FROM TRANSACTIONS WHERE IDCUENTA = A.ID AND TIPO = FALSE) AS EGRESOS FROM ACCOUNTS A WHERE A.IDCLIENTE = $1',[idcliente]);
     res.status(200).json(response.rows);
 };
 
 
 const getaccountsName = async (req, res) => {    
     const idcliente = req.params.idcliente;
-    const response = await pool.query('SELECT NOMBRE FROM ACCOUNTS  WHERE IDCLIENTE = $1 ;',[idcliente]);
+    const response = await pool.query('SELECT ID, NOMBRE FROM ACCOUNTS  WHERE IDCLIENTE = $1 ;',[idcliente]);
     res.status(200).json(response.rows);
 };
 

@@ -9,7 +9,6 @@ const { editUser } = require('../controllers/users.controller');
 const { deleteUser } = require('../controllers/users.controller');
 
 const { getAccounts } = require('../controllers/accounts.controller');
-const { getAmount } = require('../controllers/accounts.controller');
 const { getaccountsName } = require('../controllers/accounts.controller');
 const { createAccount } = require('../controllers/accounts.controller');
 const { editAccount } = require('../controllers/accounts.controller');
