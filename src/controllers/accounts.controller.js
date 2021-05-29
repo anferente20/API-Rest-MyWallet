@@ -8,10 +8,16 @@ const pool = new Pool({
 })
 const getAccounts = async (req, res) => {    
     const idcliente = req.params.idcliente;
-    const response = await pool.query('SELECT * FROM ACCOUNTS WHERE IDCLIENTE = $1',[idcliente]);
+    const response = await pool.query('SELECT A.ID, A.NOMBRE, A.DESCRIPCION, A.IDCLIENTE, (SELECT SUM(MONTO) FROM TRANSACTIONS WHERE IDCUENTA = A.ID) AS SALDO FROM ACCOUNTS A WHERE A.IDCLIENTE = $1;;',[idcliente]);
     res.status(200).json(response.rows);
 };
 
+
+const getaccountsName = async (req, res) => {    
+    const idcliente = req.params.idcliente;
+    const response = await pool.query('SELECT NOMBRE FROM ACCOUNTS  WHERE IDCLIENTE = $1 ;',[idcliente]);
+    res.status(200).json(response.rows);
+};
 
 const createAccount = async (req, res) => {
     const {nombre,descripcion,idcliente} = req.body;
@@ -33,9 +39,11 @@ const deleteAcount = async (req, res)=>{
     res.send('cuenta eliminada');
 }
 
+
 module.exports = {
     getAccounts,
     createAccount,
     editAccount,
-    deleteAcount
+    deleteAcount,
+    getaccountsName
 }

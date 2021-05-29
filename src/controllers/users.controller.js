@@ -11,12 +11,20 @@ const getUsers = async (req, res) => {
     res.status(200).json(response.rows);
 };
 
+const getUsersByID = async (req, res) => {
+    const correo = req.params.id;
+    const response = await pool.query('SELECT * FROM USERS WHERE ID = $1',[correo]);
+    res.status(200).json(response.rows);
+};
+
 const getUsersByCorreo = async (req, res) => {
     const correo = req.params.correo;
     const contrasena = req.params.contrasena;
     const response = await pool.query('SELECT * FROM USERS WHERE CORREO = $1 AND CONTRASENA =$2',[correo,contrasena]);
     res.status(200).json(response.rows);
 };
+
+
 
 const createUser = async (req, res) => {
     const {nombres, apellidos, telefono, contrasena, correo} = req.body;
@@ -44,5 +52,6 @@ module.exports = {
     getUsersByCorreo,
     createUser,
     editUser,
-    deleteUser
+    deleteUser,
+    getUsersByID
 }
