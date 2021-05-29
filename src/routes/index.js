@@ -16,6 +16,7 @@ const { deleteAcount } = require('../controllers/accounts.controller');
 
 const { getTransactions } = require('../controllers/transactions.controller');
 const { getIncomeTransactions } = require('../controllers/transactions.controller');
+const { getOutcomeTransactions } = require('../controllers/transactions.controller');
 const { createTransaction } = require('../controllers/transactions.controller');
 const { editTransaction } = require('../controllers/transactions.controller');
 const { deleteTransaction } = require('../controllers/transactions.controller');
@@ -35,6 +36,7 @@ router.post('/deleteAccount', deleteAcount);
 
 router.get('/transactions/:idcuenta', getTransactions);
 router.get('/income/:idcliente', getIncomeTransactions);
+router.get('/outcome/:idcliente', getOutcomeTransactions);
 router.post('/addTransaction', createTransaction);
 router.post('/editTransaction', editTransaction);
 router.post('/deleteTransaction', deleteTransaction);

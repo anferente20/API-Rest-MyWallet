@@ -39,10 +39,17 @@ getIncomeTransactions = async (req, res) => {
     res.status(200).json(response.rows);
 };
 
+getOutcomeTransactions = async (req, res) => {
+    const idcliente = req.params.idcliente;
+    const response = await pool.query('SELECT T.FECHA, T.MONTO FROM TRANSACTIONS T, ACCOUNTS A, USERS U WHERE T.TIPO = FALSE AND T.IDCUENTA = A.ID AND A.IDCLIENTE = U.ID AND U.ID = $1;',[idcliente]);
+    res.status(200).json(response.rows);
+};
+
 module.exports = {
     getTransactions,
     createTransaction,
     editTransaction,
     deleteTransaction,
-    getIncomeTransactions
+    getIncomeTransactions,
+    getOutcomeTransactions
 }
