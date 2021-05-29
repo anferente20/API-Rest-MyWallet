@@ -34,6 +34,7 @@ const editAccount = async (req, res)=>{
 
 const deleteAcount = async (req, res)=>{
     const {id} = req.body;
+    await pool.query('DELETE FROM TRANSACTIONS WHERE IDCUENTA = $1',[id]);
     const response = await pool.query('DELETE FROM ACCOUNTS WHERE ID = $1',[id]);
     console.log(response);
     res.send('cuenta eliminada');
