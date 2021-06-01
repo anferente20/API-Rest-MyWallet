@@ -19,6 +19,12 @@ const getaccountsName = async (req, res) => {
     res.status(200).json(response.rows);
 };
 
+getAccountName = async (req, res) => {    
+    const idCuenta = req.params.idcuenta;
+    const response = await pool.query('SELECT NOMBRE FROM ACCOUNTS  WHERE ID = $1 ;',[idCuenta]);
+    res.status(200).json(response.rows);
+};
+
 const createAccount = async (req, res) => {
     const {nombre,descripcion,idcliente} = req.body;
     const response = await pool.query('INSERT INTO ACCOUNTS (NOMBRE,DESCRIPCION,IDCLIENTE) VALUES ($1,$2,$3)',[nombre,descripcion,idcliente]);
@@ -46,5 +52,6 @@ module.exports = {
     createAccount,
     editAccount,
     deleteAcount,
-    getaccountsName
+    getaccountsName,
+    getAccountName
 }

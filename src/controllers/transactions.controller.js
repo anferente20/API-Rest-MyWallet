@@ -45,11 +45,25 @@ getOutcomeTransactions = async (req, res) => {
     res.status(200).json(response.rows);
 };
 
+
+getAccountIncomeTransactions = async (req, res) => {
+    const idCuenta = req.params.idcuenta;
+    const response = await pool.query(' SELECT FECHA, MONTO FROM TRANSACTIONS WHERE TIPO = TRUE AND IDCUENTA = $1;',[idCuenta]);
+    res.status(200).json(response.rows);
+};
+
+getAccountOutcomeTransactions = async (req, res) => {
+    const idCuenta = req.params.idcuenta;
+    const response = await pool.query(' SELECT FECHA, MONTO FROM TRANSACTIONS WHERE TIPO = FALSE AND IDCUENTA = $1;',[idCuenta]);
+    res.status(200).json(response.rows);
+};
 module.exports = {
     getTransactions,
     createTransaction,
     editTransaction,
     deleteTransaction,
     getIncomeTransactions,
-    getOutcomeTransactions
+    getOutcomeTransactions,
+    getAccountIncomeTransactions,
+    getAccountOutcomeTransactions
 }

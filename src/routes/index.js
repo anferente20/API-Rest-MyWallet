@@ -10,6 +10,7 @@ const { deleteUser } = require('../controllers/users.controller');
 
 const { getAccounts } = require('../controllers/accounts.controller');
 const { getaccountsName } = require('../controllers/accounts.controller');
+const { getAccountName } = require('../controllers/accounts.controller');
 const { createAccount } = require('../controllers/accounts.controller');
 const { editAccount } = require('../controllers/accounts.controller');
 const { deleteAcount } = require('../controllers/accounts.controller');
@@ -17,6 +18,8 @@ const { deleteAcount } = require('../controllers/accounts.controller');
 const { getTransactions } = require('../controllers/transactions.controller');
 const { getIncomeTransactions } = require('../controllers/transactions.controller');
 const { getOutcomeTransactions } = require('../controllers/transactions.controller');
+const { getAccountIncomeTransactions } = require('../controllers/transactions.controller');
+const { getAccountOutcomeTransactions } = require('../controllers/transactions.controller');
 const { createTransaction } = require('../controllers/transactions.controller');
 const { editTransaction } = require('../controllers/transactions.controller');
 const { deleteTransaction } = require('../controllers/transactions.controller');
@@ -30,12 +33,15 @@ router.post('/deleteUser', deleteUser);
 
 router.get('/accounts/:idcliente', getAccounts);
 router.get('/accountsName/:idcliente', getaccountsName);
+router.get('/accountName/:idcuenta', getAccountName);
 router.post('/addAccount', createAccount);
 router.post('/editAccount', editAccount);
 router.post('/deleteAccount', deleteAcount);
 
 router.get('/transactions/:idcuenta', getTransactions);
 router.get('/income/:idcliente', getIncomeTransactions);
+router.get('/accountIncome/:idcuenta', getAccountIncomeTransactions);
+router.get('/accountOutcome/:idcuenta', getAccountOutcomeTransactions);
 router.get('/outcome/:idcliente', getOutcomeTransactions);
 router.post('/addTransaction', createTransaction);
 router.post('/editTransaction', editTransaction);
